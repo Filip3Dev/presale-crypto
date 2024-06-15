@@ -37,7 +37,7 @@ export default function HomePage() {
             }}
           >
             <Text mb="sm" align="center" w="100%" color="white" fw="bold" className="blink">
-              TESTNET ONLY
+              Hurry up, it´s almost over
             </Text>
           </div>
           <Header height={80} p="lg">
