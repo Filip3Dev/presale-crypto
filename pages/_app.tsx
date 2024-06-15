@@ -43,7 +43,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
       <Head>
         <title>Credit Ledger | Pre-sale</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="https://ik.imagekit.io/abkvohwfl/creditLedger%20logo_YmvotYmaL.png" />
       </Head>
 
       <MantineProvider
