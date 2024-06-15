@@ -39,6 +39,7 @@ const TstkBanner: React.FC = () => (
         <Button
           radius="md"
           size="lg"
+          id="checkout_website"
           uppercase
           style={{
             backgroundColor: 'transparent',

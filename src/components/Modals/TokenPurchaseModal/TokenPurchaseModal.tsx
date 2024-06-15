@@ -114,6 +114,7 @@ const TokenPurchaseModal: React.FC<TokenPurchaseModalProps> = ({
             radius="md"
             fullWidth
             size="lg"
+            id="modal_buy_btn"
             mt="md"
             uppercase
             disabled={!write}

@@ -109,6 +109,7 @@ const TokenPurchaseForm: React.FC<TokenPurchaseModalProps> = ({
           ) : (
             <Button
               radius="md"
+              id="master_buy"
               size="lg"
               uppercase
               style={{

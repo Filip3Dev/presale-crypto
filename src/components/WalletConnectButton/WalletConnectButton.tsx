@@ -16,6 +16,7 @@ const WalletConnectButton: React.FC<{ isFullWidth?: boolean; size?: string; text
   <ConnectKitButton.Custom>
     {({ isConnected, show, truncatedAddress, ensName }) => (
       <Button
+        id="header_button"
         radius="md"
         size={size}
         uppercase
