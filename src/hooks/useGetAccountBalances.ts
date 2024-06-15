@@ -25,7 +25,7 @@ const useGetAccountBalances = (): {
   // get connected account
   const { address } = useAccount();
 
-  // get account MATIC balance
+  // get account BNB balance
   const { data: maticData, refetch: refetchMaticBalance } = useBalance({
     address,
   });

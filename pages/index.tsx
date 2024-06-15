@@ -33,11 +33,11 @@ export default function HomePage() {
           <div
             style={{
               height: '24px',
-              backgroundColor: '#9333ea',
+              backgroundColor: '#fcd535',
             }}
           >
-            <Text mb="sm" align="center" w="100%" color="white" fw="bold" className="blink">
-              Hurry up, it´s almost over
+            <Text mb="sm" align="center" w="100%" color="white" fw="bold">
+              Powered by Binance Smart Chain
             </Text>
           </div>
           <Header height={80} p="lg">

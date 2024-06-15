@@ -21,7 +21,7 @@ const WalletConnectButton: React.FC<{ isFullWidth?: boolean; size?: string; text
         size={size}
         uppercase
         style={{
-          backgroundColor: '#CAFC36',
+          backgroundColor: '#fcd535',
           color: '#000000',
         }}
         onClick={show}

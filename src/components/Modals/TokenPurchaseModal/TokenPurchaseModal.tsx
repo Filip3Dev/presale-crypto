@@ -1,7 +1,7 @@
 import { Button, Text, Modal } from '@mantine/core';
 import { usePrepareContractWrite, useContractWrite, useWaitForTransaction } from 'wagmi';
 import { useEffect } from 'react';
-import { bscTestnet } from 'wagmi/chains';
+import { bsc } from 'wagmi/chains';
 import { useDebounce } from 'usehooks-ts';
 import { TokenPurchaseModalProps, ConnectionProgress } from '@/components/Modals/types';
 import ModalErrorState from '@/components/Modals/ModalProgressStates/ModalErrorState/ModalErrorState';
@@ -50,7 +50,7 @@ const TokenPurchaseModal: React.FC<TokenPurchaseModalProps> = ({
     args: [tokenAmount],
     value: BigInt(value),
     enabled: Boolean(debouncedTokenAmount),
-    chainId: bscTestnet.id,
+    chainId: bsc.id,
   });
 
   const { data, write, reset, isError: writeError } = useContractWrite(config);

@@ -13,7 +13,7 @@ describe('TokenPurchaseBalances', () => {
     render(<TokenPurchaseBalances {...balanceProps} />);
 
     expect(
-      screen.getByText(`${balanceProps.totalPriceOfPurchase.toFixed(5)} MATIC`)
+      screen.getByText(`${balanceProps.totalPriceOfPurchase.toFixed(5)} BNB`)
     ).toBeInTheDocument();
   });
 
@@ -21,7 +21,7 @@ describe('TokenPurchaseBalances', () => {
     render(<TokenPurchaseBalances {...balanceProps} />);
 
     expect(
-      screen.getByText(`${balanceProps.walletMaticBalance.toFixed(5)} MATIC`)
+      screen.getByText(`${balanceProps.walletMaticBalance.toFixed(5)} BNB`)
     ).toBeInTheDocument();
   });
 
@@ -38,7 +38,7 @@ describe('TokenPurchaseBalances', () => {
 
     render(<TokenPurchaseBalances {...{ ...balanceProps, insufficientBalance }} />);
 
-    expect(screen.getByText(`${balanceProps.totalPriceOfPurchase.toFixed(5)} MATIC`)).toHaveStyle(
+    expect(screen.getByText(`${balanceProps.totalPriceOfPurchase.toFixed(5)} BNB`)).toHaveStyle(
       'color: rgb(250, 82, 82)'
     );
   });

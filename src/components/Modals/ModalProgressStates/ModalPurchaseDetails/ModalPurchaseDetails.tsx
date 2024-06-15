@@ -36,8 +36,8 @@ const ModalPurchaseDetails: React.FC<ModalPurchaseDetailsProps> = ({
           {totalPriceOfPurchase.toFixed(5)}
         </Text>
         <Flex gap="xs" align="center">
-          <Image maw={20} mx="auto" src="/polygon-matic-logo.svg" alt="matic icon" />{' '}
-          <Text fw="bold">MATIC</Text>
+          <Image maw={20} mx="auto" src="/bnb.icon" alt="matic icon" />{' '}
+          <Text fw="bold">BNB</Text>
         </Flex>
       </Group>
       <Group position="right" w="100%" mt=".5rem">
@@ -69,7 +69,7 @@ const ModalPurchaseDetails: React.FC<ModalPurchaseDetailsProps> = ({
       </Group>
       <Group position="right" w="100%" mt=".5rem">
         <Text size="sm">
-          1 CLTS = <span>{stageTokenPrice.toFixed(5)}</span> MATIC
+          1 CLTS = <span>{stageTokenPrice.toFixed(5)}</span> BNB
         </Text>
       </Group>
     </Box>

@@ -20,7 +20,7 @@ const TokenPurchaseBalances: React.FC<TokenFormBalancesProps> = ({
         Amount to pay
       </Text>
       <Text size="1rem" fw={600} color={insufficientBalance ? 'red' : 'white'}>
-        {totalPriceOfPurchase.toFixed(5)} MATIC
+        {totalPriceOfPurchase.toFixed(5)} BNB
       </Text>
     </Group>
 
@@ -29,7 +29,7 @@ const TokenPurchaseBalances: React.FC<TokenFormBalancesProps> = ({
         Wallet Balance
       </Text>
       <Text size="1rem" fw={600} color="white">
-        {walletMaticBalance.toFixed(5)} MATIC
+        {walletMaticBalance.toFixed(5)} BNB
       </Text>
     </Group>
 

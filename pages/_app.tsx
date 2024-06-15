@@ -4,7 +4,7 @@ import { GoogleTagManager } from '@next/third-parties/google';
 import Head from 'next/head';
 import { MantineProvider, ColorScheme } from '@mantine/core';
 import { WagmiConfig, createConfig } from 'wagmi';
-import { bscTestnet } from 'wagmi/chains';
+import { bsc } from 'wagmi/chains';
 import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
 // eslint-disable-next-line import/extensions
 import 'public/app.css';
@@ -23,7 +23,7 @@ const config = createConfig(
   getDefaultConfig({
     appName: 'CLTS Pre-sale App',
     alchemyId: process.env.NEXT_PUBLIC_ALCHEMY_ID,
-    chains: [bscTestnet],
+    chains: [bsc],
     walletConnectProjectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID!,
   })
 );

@@ -62,7 +62,7 @@ const CurrentStageStats: React.FC<CurrentStageValues> = ({
           </>
         ) : (
           <>
-            <span> {stageTokenPrice} MATIC</span>
+            <span> {stageTokenPrice} BNB</span>
           </>
         )}
       </Text>

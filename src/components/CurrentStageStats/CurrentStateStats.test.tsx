@@ -28,6 +28,6 @@ describe('CurrentStageStats Component', () => {
     render(<CurrentStageStats {...sampleProps} />);
     const priceText = screen.getByText('Presale Price:');
     expect(priceText).toBeInTheDocument();
-    expect(priceText).toHaveTextContent('0.00064 MATIC');
+    expect(priceText).toHaveTextContent('0.00064 BNB');
   });
 });

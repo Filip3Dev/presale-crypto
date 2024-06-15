@@ -24,7 +24,7 @@ const TstkBanner: React.FC = () => (
         <span> Buy </span>
         <span
           style={{
-            color: 'rgb(147 51 234)',
+            color: '#fcd535',
           }}
         >
           CLTS
