@@ -1,10 +1,14 @@
 import NextApp, { AppProps, AppContext } from 'next/app';
 import { Exo } from 'next/font/google';
+import { GoogleTagManager } from '@next/third-parties/google';
 import Head from 'next/head';
 import { MantineProvider, ColorScheme } from '@mantine/core';
 import { WagmiConfig, createConfig } from 'wagmi';
-import { polygonMumbai } from 'wagmi/chains';
+import { bscTestnet } from 'wagmi/chains';
 import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
+// eslint-disable-next-line import/extensions
+import 'public/app.css';
+import { GTM_ID } from '@/constants';
 
 // google font
 const exoFont = Exo({
@@ -15,9 +19,9 @@ const exoFont = Exo({
 // connectKit + wagmi
 const config = createConfig(
   getDefaultConfig({
-    appName: 'TSTK Pre-sale App',
+    appName: 'CLTS Pre-sale App',
     alchemyId: process.env.NEXT_PUBLIC_ALCHEMY_ID,
-    chains: [polygonMumbai],
+    chains: [bscTestnet],
     walletConnectProjectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID!,
   })
 );
@@ -28,7 +32,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   return (
     <>
       <Head>
-        <title>TSTK Pre-sale</title>
+        <title>Credit Ledger | Pre-sale</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
@@ -47,6 +51,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
           </ConnectKitProvider>
         </WagmiConfig>
       </MantineProvider>
+      <GoogleTagManager gtmId={GTM_ID} />
     </>
   );
 }

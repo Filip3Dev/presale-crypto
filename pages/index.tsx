@@ -6,6 +6,7 @@ import TokenPurchaseForm from '@/components/TokenPurchaseForm/TokenPurchaseForm'
 import TstkBanner from '@/components/TstkBanner/TstkBanner';
 import useGetCurrentStageStats from '@/hooks/useGetCurrentStageStats';
 import useGetAccountBalances from '@/hooks/useGetAccountBalances';
+import useGetFaucetData from '@/hooks/useGetFaucetData';
 
 export default function HomePage() {
   const {
@@ -16,6 +17,9 @@ export default function HomePage() {
     maxTokensPerStage,
   } = useGetCurrentStageStats();
   const { maticBalance, tokenBalance } = useGetAccountBalances();
+  const { isFaucetOpen, stageMaxTokens, mintedTokensCount } = useGetFaucetData();
+
+  const restTotal = (Number(stageMaxTokens || 0) - Number(mintedTokensCount || 0)) / 10 ** 18;
 
   return (
     <AppShell
@@ -25,9 +29,21 @@ export default function HomePage() {
         height: '100vh',
       }}
       header={
-        <Header height={80} p="lg">
-          <HeaderContainer />
-        </Header>
+        <>
+          <div
+            style={{
+              height: '24px',
+              backgroundColor: '#9333ea',
+            }}
+          >
+            <Text mb="sm" align="center" w="100%" color="white" fw="bold" className="blink">
+              TESTNET ONLY
+            </Text>
+          </div>
+          <Header height={80} p="lg">
+            <HeaderContainer />
+          </Header>
+        </>
       }
     >
       <Container size="lg" pt="xl">
@@ -52,7 +68,7 @@ export default function HomePage() {
             >
               {/* Countdown timer  */}
               <Text mb="sm" align="left" size="1.3rem" w="100%" color="white" fw="bold">
-                Presale Stage #{currentStage.toString()} Ends In:
+                Presale Stage Ends In:
               </Text>
               <CountdownTimer currentStageStartTime={currentStageStartTime} />
 
@@ -60,12 +76,15 @@ export default function HomePage() {
               <CurrentStageStats
                 currentStage={currentStage}
                 stageTokenPrice={stageTokenPrice}
-                stageTokenSupply={stageTokenSupply}
+                stageTokenSupply={isFaucetOpen ? restTotal : stageTokenSupply}
+                isFaucetOpen={isFaucetOpen}
                 maxTokensPerStage={maxTokensPerStage}
               />
 
               {/* form with input and submit button along with transaction modal */}
               <TokenPurchaseForm
+                isPurchaseOpen
+                currentStage={currentStage}
                 stageTokenPrice={stageTokenPrice}
                 stageTokenSupply={stageTokenSupply}
                 maxTokensPerStage={maxTokensPerStage}

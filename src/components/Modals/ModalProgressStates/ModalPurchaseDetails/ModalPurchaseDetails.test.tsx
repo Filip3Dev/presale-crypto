@@ -11,7 +11,7 @@ const detailsProp = {
 
 describe('ModalPurchaseDetails', () => {
   it('should render the title text', () => {
-    const titleText = 'Buy TSTK Tokens';
+    const titleText = 'Buy CLTS Tokens';
     render(<ModalPurchaseDetails {...detailsProp} />);
 
     expect(screen.getByText(titleText)).toBeInTheDocument();
@@ -47,7 +47,7 @@ describe('ModalPurchaseDetails', () => {
     expect(screen.getByAltText('matic icon')).toBeInTheDocument();
   });
 
-  it('should render the TSTK icon', () => {
+  it('should render the CLTS icon', () => {
     render(<ModalPurchaseDetails {...detailsProp} />);
 
     expect(screen.getByAltText('tstk icon')).toBeInTheDocument();

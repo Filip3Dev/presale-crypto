@@ -54,7 +54,7 @@ const useGetCurrentStageStats = (): {
     contracts: [
       {
         ...preSaleContract,
-        functionName: 'currentStagePrice',
+        functionName: 'UNIT_PRICE',
       },
       {
         ...preSaleContract,

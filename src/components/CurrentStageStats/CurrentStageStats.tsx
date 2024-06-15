@@ -5,12 +5,14 @@ import { CurrentStageValues } from '@/components/CurrentStageStats/types';
  * @prop stageTokenPrice - current stage token price
  * @prop stageTokenSupply - available tokens for the current stage
  * @prop maxTokensPerStage - maximum tokens a wallet can purchase per stage
+ * @prop isFaucetOpen - check if faucet is open
  * @returns
  */
 const CurrentStageStats: React.FC<CurrentStageValues> = ({
   stageTokenPrice,
   stageTokenSupply,
   maxTokensPerStage,
+  isFaucetOpen,
 }) => (
   <Flex
     mih={50}
@@ -28,7 +30,7 @@ const CurrentStageStats: React.FC<CurrentStageValues> = ({
       }}
     >
       <Text size="1rem" fw={500} color="white">
-        Presale Supply: <span>{stageTokenSupply.toLocaleString()} TSTK</span>
+        Presale Supply: <span>{stageTokenSupply.toLocaleString()} CLTS</span>
       </Text>
     </div>
 
@@ -37,10 +39,14 @@ const CurrentStageStats: React.FC<CurrentStageValues> = ({
         width: '100%',
       }}
     >
-      <Text size="1rem" fw={500} color="white">
-        Maximum purchase amount:{' '}
-        <span>{maxTokensPerStage && maxTokensPerStage.toLocaleString()} TSTK</span>
-      </Text>
+      {
+        !isFaucetOpen && (
+          <Text size="1rem" fw={500} color="white">
+            Maximum purchase amount:{' '}
+            <span>{maxTokensPerStage && maxTokensPerStage.toLocaleString()} CLTS</span>
+          </Text>
+        ) 
+      }
     </div>
     <div
       style={{
@@ -49,7 +55,16 @@ const CurrentStageStats: React.FC<CurrentStageValues> = ({
       }}
     >
       <Text size="1rem" fw={500} color="white">
-        Presale Price: <span>{stageTokenPrice} MATIC</span>
+        Presale Price:
+        {stageTokenPrice == 0 ? (
+          <>
+            <span> FREE MINT </span>
+          </>
+        ) : (
+          <>
+            <span> {stageTokenPrice} MATIC</span>
+          </>
+        )}
       </Text>
     </div>
   </Flex>

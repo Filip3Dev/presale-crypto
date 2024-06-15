@@ -10,14 +10,14 @@ describe('TstkBanner', () => {
 
   it('renders the token title with the correct styles', () => {
     render(<TstkBanner />);
-    const title = screen.getByText('TSTK');
+    const title = screen.getByText('CLTS');
     expect(title).toHaveStyle('color: rgb(147 51 234)');
   });
 
   it('renders the banner description text correctly', () => {
     render(<TstkBanner />);
     const descriptionText = screen.getByText(
-      'TSTK is not just a DeFi token, it is the best DeFi token that you can invest in right now!'
+      'CLTS is not just a DeFi token, it is the best DeFi token that you can invest in right now!'
     );
     expect(descriptionText).toBeInTheDocument();
   });

@@ -24,7 +24,7 @@ describe('ModalSuccessState', () => {
     render(<ModalSuccessState {...successProps} />);
 
     expect(
-      screen.getByText(`You just purchased ${successProps.tokenAmount} TSTK tokens.`)
+      screen.getByText(`You just purchased ${successProps.tokenAmount} CLTS tokens.`)
     ).toBeInTheDocument();
   });
 

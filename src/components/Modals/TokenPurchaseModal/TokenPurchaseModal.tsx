@@ -1,7 +1,7 @@
 import { Button, Text, Modal } from '@mantine/core';
 import { usePrepareContractWrite, useContractWrite, useWaitForTransaction } from 'wagmi';
 import { useEffect } from 'react';
-import { polygonMumbai } from 'wagmi/chains';
+import { bscTestnet } from 'wagmi/chains';
 import { useDebounce } from 'usehooks-ts';
 import { TokenPurchaseModalProps, ConnectionProgress } from '@/components/Modals/types';
 import ModalErrorState from '@/components/Modals/ModalProgressStates/ModalErrorState/ModalErrorState';
@@ -38,18 +38,19 @@ const TokenPurchaseModal: React.FC<TokenPurchaseModalProps> = ({
   const debouncedTokenAmount = useDebounce(tokenAmount, 500);
   const tokenDecimals = 18;
 
+  const value = (10 ** tokenDecimals) * +totalPriceOfPurchase;
+
   const { refetchMaticBalance, refetchTokenBalance } = useGetAccountBalances();
   const { refetchCurrentStageStats } = useGetCurrentStageStats();
 
-  const { config } = usePrepareContractWrite({
+  const { config, isError: prepError } = usePrepareContractWrite({
     address: process.env.NEXT_PUBLIC_PRESALE_CONTRACT_ADDRESS as `0x${string}` | undefined,
     abi: ABI,
     functionName: 'tokenSale',
-    args: [BigInt(+tokenAmount * 10 ** tokenDecimals)],
-
-    value: BigInt(stageTokenPrice * 10 ** tokenDecimals * +tokenAmount),
+    args: [tokenAmount],
+    value: BigInt(value),
     enabled: Boolean(debouncedTokenAmount),
-    chainId: polygonMumbai.id,
+    chainId: bscTestnet.id,
   });
 
   const { data, write, reset, isError: writeError } = useContractWrite(config);
@@ -108,21 +109,23 @@ const TokenPurchaseModal: React.FC<TokenPurchaseModalProps> = ({
         totalPriceOfPurchase={totalPriceOfPurchase}
       />
       {connectionProgress === ConnectionProgress.NOT_STARTED && (
-        <Button
-          radius="md"
-          fullWidth
-          size="lg"
-          mt="md"
-          uppercase
-          disabled={!write}
-          style={{
-            backgroundColor: '#CAFC36',
-            color: '#000000',
-          }}
-          onClick={handleWriteContract}
-        >
-          <Text fz="md">Continue</Text>
-        </Button>
+        <>
+          <Button
+            radius="md"
+            fullWidth
+            size="lg"
+            mt="md"
+            uppercase
+            disabled={!write}
+            style={{
+              backgroundColor: prepError ? '#ff5757' : '#CAFC36',
+              color: '#000000',
+            }}
+            onClick={prepError ? () => handleClose() : handleWriteContract}
+          >
+            <Text fz="md">{prepError ? "Can't buy" : 'Buy now'}</Text>
+          </Button>
+        </>
       )}
 
       {/* connection request initiated. awaiting user approval from extension  */}

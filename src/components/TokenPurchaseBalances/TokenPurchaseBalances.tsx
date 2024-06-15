@@ -38,7 +38,7 @@ const TokenPurchaseBalances: React.FC<TokenFormBalancesProps> = ({
         You own
       </Text>
       <Text size="1.2rem" fw={600} color="white">
-        {walletTokenBalance.toFixed(5)} TSTK
+        {walletTokenBalance.toFixed(5)} CLTS
       </Text>
     </Group>
   </Box>

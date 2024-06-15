@@ -29,7 +29,7 @@ describe('TokenPurchaseBalances', () => {
     render(<TokenPurchaseBalances {...balanceProps} />);
 
     expect(
-      screen.getByText(`${balanceProps.walletTokenBalance.toFixed(5)} TSTK`)
+      screen.getByText(`${balanceProps.walletTokenBalance.toFixed(5)} CLTS`)
     ).toBeInTheDocument();
   });
 

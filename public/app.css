@@ -1,0 +1,44 @@
+.blink {
+    -webkit-animation: blink-2 .9s infinite both;
+    animation: blink-2 .9s infinite both
+}
+
+@-webkit-keyframes blink-2 {
+    0% {
+        opacity: 1
+    }
+
+    50% {
+        opacity: .2
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+@keyframes blink-2 {
+    0% {
+        opacity: 1
+    }
+
+    50% {
+        opacity: .2
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+.nextClaimDate{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.nextClaimDate p{
+    margin: 0px;
+}

@@ -53,6 +53,31 @@ export const ABI = [
       {
         indexed: true,
         internalType: 'address',
+        name: 'user',
+        type: 'address',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'timestamp',
+        type: 'uint256',
+      },
+    ],
+    name: 'ClaimEvent',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'address',
         name: 'previousOwner',
         type: 'address',
       },
@@ -83,37 +108,6 @@ export const ABI = [
     anonymous: false,
     inputs: [
       {
-        indexed: true,
-        internalType: 'address',
-        name: 'user',
-        type: 'address',
-      },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'stage',
-        type: 'uint256',
-      },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'qty',
-        type: 'uint256',
-      },
-      {
-        indexed: false,
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256',
-      },
-    ],
-    name: 'Sale',
-    type: 'event',
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
         indexed: false,
         internalType: 'address',
         name: 'account',
@@ -125,7 +119,7 @@ export const ABI = [
   },
   {
     inputs: [],
-    name: 'MIN_QTD',
+    name: 'CLAIM_COUNT',
     outputs: [
       {
         internalType: 'uint128',
@@ -138,12 +132,51 @@ export const ABI = [
   },
   {
     inputs: [],
-    name: 'STAGE_BLOCKS_DURATION',
+    name: 'COOLDOWN_TIME',
     outputs: [
       {
-        internalType: 'uint64',
+        internalType: 'uint128',
         name: '',
-        type: 'uint64',
+        type: 'uint128',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'HISTORY_MINTED_TOKENS',
+    outputs: [
+      {
+        internalType: 'uint128',
+        name: '',
+        type: 'uint128',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'MINTED_TOKENS_COUNT',
+    outputs: [
+      {
+        internalType: 'uint128',
+        name: '',
+        type: 'uint128',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'MINT_AMOUNT',
+    outputs: [
+      {
+        internalType: 'uint128',
+        name: '',
+        type: 'uint128',
       },
     ],
     stateMutability: 'view',
@@ -152,32 +185,6 @@ export const ABI = [
   {
     inputs: [],
     name: 'STAGE_MAX_TOKENS',
-    outputs: [
-      {
-        internalType: 'uint128',
-        name: '',
-        type: 'uint128',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'STAGE_MAX_WALLET_BUY',
-    outputs: [
-      {
-        internalType: 'uint128',
-        name: '',
-        type: 'uint128',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'UNIT_PRICE',
     outputs: [
       {
         internalType: 'uint128',
@@ -204,44 +211,12 @@ export const ABI = [
   {
     inputs: [
       {
-        internalType: 'uint256',
-        name: 'qty',
-        type: 'uint256',
-      },
-    ],
-    name: 'calculateAmount',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint128',
-        name: 'quantity',
-        type: 'uint128',
-      },
-    ],
-    name: 'changeMinimumQuantity',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      {
         internalType: 'bool',
         name: 'state',
         type: 'bool',
       },
     ],
-    name: 'changePurchaseState',
+    name: 'changeFaucetState',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
@@ -250,62 +225,23 @@ export const ABI = [
     inputs: [
       {
         internalType: 'uint128',
-        name: 'price',
+        name: 'amount',
         type: 'uint128',
       },
     ],
-    name: 'changeUnitPrice',
+    name: 'changeMintAmount',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
   },
   {
     inputs: [],
-    name: 'currentStage',
+    name: 'isFaucetOpen',
     outputs: [
       {
-        internalType: 'uint128',
+        internalType: 'bool',
         name: '',
-        type: 'uint128',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'currentStageAvailableAmount',
-    outputs: [
-      {
-        internalType: 'uint128',
-        name: '',
-        type: 'uint128',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'currentStageBlockStart',
-    outputs: [
-      {
-        internalType: 'uint128',
-        name: '',
-        type: 'uint128',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'currentStageMaxAmount',
-    outputs: [
-      {
-        internalType: 'uint128',
-        name: '',
-        type: 'uint128',
+        type: 'bool',
       },
     ],
     stateMutability: 'view',
@@ -315,29 +251,16 @@ export const ABI = [
     inputs: [
       {
         internalType: 'address',
-        name: 'to',
+        name: 'player',
         type: 'address',
       },
     ],
-    name: 'currentStageSoldAmount',
+    name: 'nextClaimTime',
     outputs: [
       {
-        internalType: 'uint128',
+        internalType: 'uint256',
         name: '',
-        type: 'uint128',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'isPurchaseOpen',
-    outputs: [
-      {
-        internalType: 'bool',
-        name: '',
-        type: 'bool',
+        type: 'uint256',
       },
     ],
     stateMutability: 'view',
@@ -378,6 +301,13 @@ export const ABI = [
   },
   {
     inputs: [],
+    name: 'reloadMintedTokens',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
     name: 'renounceOwnership',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -397,27 +327,15 @@ export const ABI = [
     type: 'function',
   },
   {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: 'start',
-        type: 'uint256',
-      },
-    ],
-    name: 'startSale',
+    inputs: [],
+    name: 'startFaucet',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
   },
   {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: 'qty',
-        type: 'uint256',
-      },
-    ],
-    name: 'tokenSale',
+    inputs: [],
+    name: 'tokenClaim',
     outputs: [
       {
         internalType: 'bool',
@@ -425,7 +343,31 @@ export const ABI = [
         type: 'bool',
       },
     ],
-    stateMutability: 'payable',
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address',
+      },
+    ],
+    name: 'tokensClaimed',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'lastClaim',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'view',
     type: 'function',
   },
   {

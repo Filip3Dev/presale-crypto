@@ -3,4 +3,6 @@ export interface CurrentStageValues {
   stageTokenSupply: number;
   currentStage?: number;
   maxTokensPerStage?: number;
+  isPurchaseOpen?: boolean;
+  isFaucetOpen?: boolean;
 }

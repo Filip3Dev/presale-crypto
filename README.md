@@ -1,6 +1,6 @@
-# TSTK Presale
+# CLTS Presale
 
-This is a dApp for the presale of TSTK tokens. The pre-sale runs in 24-hour stages and this app lets you purchase tokens as per the price of the current stage. The app runs on the Polygon Mumbai chain
+This is a dApp for the presale of CLTS tokens. The pre-sale runs in 24-hour stages and this app lets you purchase tokens as per the price of the current stage. The app runs on the Polygon Mumbai chain
 
 The application is hosted here:
 [Vercel Link](https://tstk-beincrypto.vercel.app/)
@@ -46,7 +46,7 @@ yarn
 ```
 NEXT_PUBLIC_ALCHEMY_ID=
 NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=
-NEXT_PUBLIC_TSTK_TOKEN_ADDRESS=
+NEXT_PUBLIC_CLTS_TOKEN_ADDRESS=
 NEXT_PUBLIC_PRESALE_CONTRACT_ADDRESS=
 ```
 

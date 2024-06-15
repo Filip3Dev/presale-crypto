@@ -1,8 +1,10 @@
-import { useBalance, useAccount } from 'wagmi';
+import { useBalance, useAccount, useContractRead } from 'wagmi';
+import { formatEther } from 'viem';
 import { useState, useEffect } from 'react';
+import { ABI } from '@/contract/TokenContractABI';
 
 /**
- * Hook to get matic and TSTK balance of the connected account.
+ * Hook to get matic and CLTS balance of the connected account.
  * Also returns methods to refetch these values.
  * @returns
  */
@@ -28,23 +30,30 @@ const useGetAccountBalances = (): {
     address,
   });
 
-  // get account TSTK balance
-  const { data: tokenData, refetch: refetchTokenBalance } = useBalance({
-    address,
-    token: process.env.NEXT_PUBLIC_TSTK_TOKEN_ADDRESS as `0x${string}` | undefined,
+  const { data, refetch: refetchTokenBalance } = useContractRead({
+    abi: ABI,
+    address: process.env.NEXT_PUBLIC_CLTS_TOKEN_ADDRESS as `0x${string}` | undefined,
+    functionName: 'balanceOf',
+    args: [address],
+    watch: false,
   });
+  const tokenBalance = data as bigint;
 
   // account balances
   useEffect(() => {
-    if (!maticData?.formatted || !tokenData?.formatted) return;
-    setWalletBalance((prevState) => ({
-      ...prevState,
-      maticBalance: +maticData.formatted,
-      tokenBalance: +tokenData.formatted,
-    }));
-  }, [maticData?.formatted, tokenData?.formatted]);
+    if (!maticData || !tokenBalance) return;
+    setWalletBalance({
+      maticBalance: Number(maticData.formatted),
+      tokenBalance: Number(tokenBalance ? formatEther(tokenBalance) : 0),
+    });
+  }, [maticData, data]);
 
-  return { ...walletBalance, refetchMaticBalance, refetchTokenBalance };
+  const balances = {
+    maticBalance: Number(maticData ? maticData.formatted : 0),
+    tokenBalance: Number(tokenBalance ? formatEther(tokenBalance) : 0),
+  };
+
+  return { ...balances, refetchMaticBalance, refetchTokenBalance };
 };
 
 export default useGetAccountBalances;

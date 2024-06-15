@@ -40,7 +40,7 @@ const ModalSuccessState: React.FC<ModalSuccessStateProps> = ({
     <Text fz="lg" fw="bold" color="white">
       Request successful
     </Text>
-    <Text align="center">You just purchased {tokenAmount} TSTK tokens.</Text>
+    <Text align="center">You just purchased {tokenAmount} CLTS tokens.</Text>
 
     {/* show link to contract call for confirmation  */}
     {Boolean(transactionHash) && (

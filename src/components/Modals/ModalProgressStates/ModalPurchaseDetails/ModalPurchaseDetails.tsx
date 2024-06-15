@@ -2,7 +2,7 @@ import { Title, Box, Text, Group, Image, Flex } from '@mantine/core';
 import { ModalPurchaseDetailsProps } from '@/components/Modals/types';
 
 /**
- * Modal section to show details of how many TSTK tokens to buy and the total cost
+ * Modal section to show details of how many CLTS tokens to buy and the total cost
  * @prop totalPriceOfPurchase - the total price of token purchase
  * @prop walletMaticBalance - Matic balance for the connected account
  * @prop tokenAmount - amount of tokens to purchase
@@ -18,7 +18,7 @@ const ModalPurchaseDetails: React.FC<ModalPurchaseDetailsProps> = ({
   <>
     {/* token and price details to show to the user  */}
     <Title color="white" fw="bold" fz="xl" mb="xl">
-      Buy TSTK Tokens
+      Buy CLTS Tokens
     </Title>
     <Box
       sx={{
@@ -64,12 +64,12 @@ const ModalPurchaseDetails: React.FC<ModalPurchaseDetailsProps> = ({
         </Text>
         <Flex gap="xs">
           <Image maw={24} mx="auto" src="/tstk-token-symbol.png" alt="tstk icon" />{' '}
-          <Text fw="bold">TSTK</Text>
+          <Text fw="bold">CLTS</Text>
         </Flex>
       </Group>
       <Group position="right" w="100%" mt=".5rem">
         <Text size="sm">
-          1 TSTK = <span>{stageTokenPrice.toFixed(5)}</span> MATIC
+          1 CLTS = <span>{stageTokenPrice.toFixed(5)}</span> MATIC
         </Text>
       </Group>
     </Box>

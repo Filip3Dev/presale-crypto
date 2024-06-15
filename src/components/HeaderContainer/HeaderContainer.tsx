@@ -11,7 +11,7 @@ const HeaderContainer: React.FC = () => (
     <Container size="lg">
       <Group position="apart">
         <div>
-          <Image maw={36} mx="auto" radius="md" src="/brandLogo.png" alt="brand logo" />
+          <Image maw={140} mx="auto" radius="md" src="https://ik.imagekit.io/abkvohwfl/creditLedgerLogo_mGj-5_iV9.png" alt="brand logo" />
         </div>
         <WalletConnectButton />
       </Group>

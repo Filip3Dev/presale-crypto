@@ -8,9 +8,10 @@ import { TokenPurchaseModalProps } from '@/components/TokenPurchaseForm/types';
 import TokenPurchaseModal from '@/components/Modals/TokenPurchaseModal/TokenPurchaseModal';
 import { ConnectionProgress } from '@/components/Modals/types';
 import TokenPurchaseBalances from '@/components/TokenPurchaseBalances/TokenPurchaseBalances';
+import useGetFaucetData from '@/hooks/useGetFaucetData';
 
 /**
- * Form with input field and button to purchase TSTK tokens
+ * Form with input field and button to purchase CLTS tokens
  * @prop stageTokenPrice,
  * @prop stageTokenSupply,
  * @prop maxTokensPerStage,
@@ -24,8 +25,10 @@ const TokenPurchaseForm: React.FC<TokenPurchaseModalProps> = ({
   maxTokensPerStage,
   walletMaticBalance,
   walletTokenBalance,
+  isPurchaseOpen,
 }) => {
   const [opened, { open, close }] = useDisclosure(false);
+  const { isFaucetOpen } = useGetFaucetData();
   const [connectionProgress, setConnectionProgress] = useState<ConnectionProgress>(
     ConnectionProgress.PENDING
   );
@@ -33,7 +36,7 @@ const TokenPurchaseForm: React.FC<TokenPurchaseModalProps> = ({
 
   const form = useForm({
     initialValues: {
-      tokenAmount: '',
+      tokenAmount: '10',
     },
 
     validate: {
@@ -48,7 +51,7 @@ const TokenPurchaseForm: React.FC<TokenPurchaseModalProps> = ({
         }
 
         // cannot buy above current stage token supply
-        if (+value > stageTokenSupply) {
+        if (!isFaucetOpen && +value > stageTokenSupply) {
           return 'Amount exceeds current token supply.';
         }
 
@@ -81,7 +84,7 @@ const TokenPurchaseForm: React.FC<TokenPurchaseModalProps> = ({
             my="1rem"
             w="100%"
             min={1}
-            step="0.00001"
+            step="0.001"
             {...form.getInputProps('tokenAmount')}
             type="number"
             styles={{
@@ -114,8 +117,9 @@ const TokenPurchaseForm: React.FC<TokenPurchaseModalProps> = ({
               }}
               fullWidth
               type="submit"
+              disabled={!isPurchaseOpen}
             >
-              <Text fz="md">buy TSTK Tokens</Text>
+              <Text fz="md">Buy CLTS Tokens</Text>
             </Button>
           )}
         </form>
