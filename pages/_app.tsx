@@ -8,7 +8,9 @@ import { bscTestnet } from 'wagmi/chains';
 import { ConnectKitProvider, getDefaultConfig } from 'connectkit';
 // eslint-disable-next-line import/extensions
 import 'public/app.css';
+import { useEffect } from 'react';
 import { GTM_ID } from '@/constants';
+import { gtmPageView } from '@/lib/gtm';
 
 // google font
 const exoFont = Exo({
@@ -28,6 +30,13 @@ const config = createConfig(
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
+
+  useEffect(() => {
+    const prop = {
+      page_title: pageProps.slug || null,
+    };
+    gtmPageView(prop);
+  }, [pageProps]);
 
   return (
     <>
